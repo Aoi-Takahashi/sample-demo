@@ -33,7 +33,8 @@ export default function App() {
   const [socket, setSocket] = useState<Socket>();
 
   useEffect(() => {
-    const socket = io();
+    //TODO: Resolve Hardcoded URL
+    const socket = io("http://localhost:3000");
     setSocket(socket);
     return () => {
       socket.close();
