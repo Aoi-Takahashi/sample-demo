@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from 'express'
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { config } from 'dotenv';
+import morgan from 'morgan';
 
 const app: Application = express()
 const PORT = 3001
@@ -24,8 +25,11 @@ io.on("connection", (socket) => {
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(morgan("tiny"));
+
 // http://expressjs.com/en/advanced/best-practice-security.html#at-a-minimum-disable-x-powered-by-header
 app.disable("x-powered-by");
+
 
 app.get('/', async (_req: Request, res: Response) => {
   return res.status(200).send({
