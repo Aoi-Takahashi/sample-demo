@@ -1,14 +1,24 @@
 import {
+  json,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 import { useEffect, useState } from "react";
 import type { Socket } from "socket.io-client";
 import { io } from "socket.io-client";
 import { SocketProvider } from "~/context";
+
+export async function loader() {
+  return json({
+    ENV: {
+      PORT: process.env.PORT,
+    },
+  });
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -29,16 +39,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const data = useLoaderData<typeof loader>();
   const [socket, setSocket] = useState<Socket>();
 
   useEffect(() => {
     //TODO: Resolve Hardcoded URL
-    const socket = io("http://localhost:3000");
+    const socket = io(`http://localhost:${data.ENV.PORT}`);
     setSocket(socket);
     return () => {
       socket.close();
     };
-  }, []);
+  }, [data.ENV.PORT]);
 
   useEffect(() => {
     if (!socket) return;
