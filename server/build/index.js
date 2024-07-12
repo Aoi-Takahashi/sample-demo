@@ -42,16 +42,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var http_1 = require("http");
 var socket_io_1 = require("socket.io");
-var dotenv_1 = require("dotenv");
 var morgan_1 = __importDefault(require("morgan"));
-var PORT = 3001;
-(0, dotenv_1.config)();
+var PORT = process.env.PORT || 3000;
 var app = (0, express_1.default)();
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, morgan_1.default)("tiny"));
@@ -76,12 +69,9 @@ app.get('/', function (_req, res) { return __awaiter(void 0, void 0, void 0, fun
     return __generator(this, function (_a) {
         return [2 /*return*/, res.status(200).send(JSON.stringify({
                 message: 'Hello World!',
-                title: "Welcome to the Express Server",
             }))];
     });
 }); });
-var port = process.env.PORT || PORT;
-// instead of running listen on the Express app, do it on the HTTP server
-httpServer.listen(port, function () {
-    console.log("Express server listening at http://localhost:".concat(port));
+httpServer.listen(PORT, function () {
+    console.log("Express server listening at http://localhost:".concat(PORT));
 });
