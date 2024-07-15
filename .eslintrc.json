@@ -11,11 +11,12 @@
       "jsx": true
     }
   },
+
+  "ignorePatterns": [".prettierrc.js", "server/build/**/*.js"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "plugin:prettier/recommended"
+    "prettier"
   ],
   "plugins": ["react", "react-hooks", "import", "unused-imports"],
   "rules": {
