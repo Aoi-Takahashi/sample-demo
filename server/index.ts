@@ -1,41 +1,45 @@
-import express, { Application, Request, Response } from "express";
-import { createServer } from "http";
-import morgan from "morgan";
-import { Server } from "socket.io";
+import express, {Application, Request, Response} from 'express';
+import {createServer} from 'http';
+import morgan from 'morgan';
+import {Server} from 'socket.io';
 
 const PORT = process.env.PORT || 3000;
 
 const app: Application = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan("tiny"));
+app.use(express.urlencoded({extended: true}));
+app.use(morgan('tiny'));
 // http://expressjs.com/en/advanced/best-practice-security.html#at-a-minimum-disable-x-powered-by-header
-app.disable("x-powered-by");
+app.disable('x-powered-by');
 
 const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
+    origin: '*',
+    methods: ['GET', 'POST'],
   },
 });
 
-io.on("connection", (socket) => {
-  console.log(socket.id, "connected");
+io.on('connection', socket => {
+  console.log(socket.id, 'connected');
+  socket.emit('confirmation', 'connected!');
 
-  socket.emit("confirmation", "connected!");
-
-  socket.on("event", (data) => {
+  socket.on('event from A', data => {
     console.log(socket.id, data);
-    socket.emit("event", "pong");
+    io.emit('event To A', {increment: 1});
+  });
+
+  socket.on('event from B', data => {
+    console.log(socket.id, data);
+    io.emit('event To B', {increment: 1});
   });
 });
 
-app.get("/", async (_req: Request, res: Response) => {
+app.get('/', async (_req: Request, res: Response) => {
   return res.status(200).send(
     JSON.stringify({
-      message: "Hello World!",
+      message: 'Hello World!',
     }),
   );
 });
