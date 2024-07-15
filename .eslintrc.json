@@ -1,0 +1,79 @@
+{
+  "env": {
+    "browser": true,
+    "es2022": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": [
+    "plugin:storybook/recommended",
+    "eslint:recommended",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": ["react", "react-hooks", "import", "unused-imports"],
+  "rules": {
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true,
+        "html": true
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error",
+    "unused-imports/no-unused-imports": "error",
+    "import/order": [
+      "warn",
+      {
+        "groups": [["builtin", "external", "internal"]],
+        "newlines-between": "never",
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ],
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": "off",
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      "error",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".jsx", ".tsx"]
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "no-void": [
+      "error",
+      {
+        "allowAsStatement": true
+      }
+    ]
+  }
+}
