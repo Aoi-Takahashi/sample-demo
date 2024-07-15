@@ -1,8 +1,12 @@
 import { defineConfig } from "@pandacss/dev";
+import { button } from "recipes/button";
 
 export default defineConfig({
   // Whether to use css reset
   preflight: true,
+
+  presets: ["@pandacss/preset-base", "@park-ui/panda-preset"],
+  jsxFramework: "react",
 
   // Where to look for your css declarations
   include: [
@@ -15,7 +19,11 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
-    extend: {},
+    extend: {
+      recipes: {
+        button,
+      },
+    },
   },
 
   // The output directory for your css system
