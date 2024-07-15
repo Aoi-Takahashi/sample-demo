@@ -3,6 +3,7 @@ node_modules
 /.cache
 /build
 .env
+/server/build/index.js
 
 #実装メモ
 dev.txt
