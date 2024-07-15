@@ -1,6 +1,13 @@
+import { MetaFunction } from "@remix-run/node";
 import { useEffect } from "react";
-
 import { useSocket } from "~/context";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "New Remix App" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
+};
 
 export default function Index() {
   const socket = useSocket();

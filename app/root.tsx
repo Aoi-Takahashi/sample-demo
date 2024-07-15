@@ -1,3 +1,4 @@
+import { LinksFunction } from "@remix-run/node";
 import {
   json,
   Links,
@@ -10,7 +11,10 @@ import {
 import { useEffect, useState } from "react";
 import type { Socket } from "socket.io-client";
 import { io } from "socket.io-client";
+import styles from "./index.css?url";
 import { SocketProvider } from "~/context";
+
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 export async function loader() {
   return json({

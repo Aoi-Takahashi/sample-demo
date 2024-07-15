@@ -12,11 +12,10 @@
     }
   },
   "extends": [
-    "plugin:storybook/recommended",
     "eslint:recommended",
-    "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "prettier",
+    "plugin:prettier/recommended"
   ],
   "plugins": ["react", "react-hooks", "import", "unused-imports"],
   "rules": {
@@ -31,7 +30,12 @@
     ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
-    "unused-imports/no-unused-imports": "error",
+    "import/no-unused-modules": [
+      "error",
+      {
+        "unusedExports": true
+      }
+    ],
     "import/order": [
       "warn",
       {
