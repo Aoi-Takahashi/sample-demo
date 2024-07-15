@@ -31,12 +31,7 @@
     ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
-    "import/no-unused-modules": [
-      "error",
-      {
-        "unusedExports": true
-      }
-    ],
+    "unused-imports/no-unused-imports": "error",
     "import/order": [
       "warn",
       {
