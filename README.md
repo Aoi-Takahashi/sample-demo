@@ -1,33 +1,30 @@
-# Express + Socket.io
+# 体験型広告demoプロダクト
 
-Socket.io is the simples way to work with WebSockets in Node.js
+[概要]
+　体験型広告コンテンツのdemoプロダクトです。
+　ユーザは自身のデバイス（ex:スマホやタブレット.etc）などからインタラクティブに操作を行い、別のディスプレイなどに表示されている広告コンテンツを体験します。
+　※海外などの参考事例：https://youtu.be/9G-DZx8hu4U?si=lTBcUgjsX-2k5Zhi
 
-This example shows how to setup socket.io inside a Express server and together with a Remix app and how to connect from the browser.
+## プロダクトの開始手順
 
-To run this example, run `npm run dev`.
+パッケージ管理に[pnpm](https://pnpm.io/ja/installation)を利用しています。
 
-> Note: The code here needs the Express adapter and because of that it needs Node.js. This is only deployable to platforms supporting a persistent running process (unlike Serverless platforms).
+- このリポジトリをcloneします。
+- プロジェクトのルートディレクトリで`pnpm install`を実行します。
+- ルートディレクトリ内にある`server`ディレクトリへ移動し、`pnpm install`を実行します。
+- ルートディレクトリ内に戻ります。
 
-## Preview
+## demoプロダクトの起動手順
 
-Open this example on [CodeSandbox](https://codesandbox.com):
-
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/socket.io)
-
-## Example
-
-This example uses the Express adapter to setup the HTTP server.
-
-Then it attaches socket.io to it and listens for a few basic events.
-
-Client-side, it imports `io` from `socket.io-client` and uses it to connect to the WebSocket server on the root component.
-
-It stores the socket instance in a React context and make it available for the whole app.
-
-In the `routes/_index` file, it accesses the socket instance to listen for more events and renders a button which sends a message to the server on each click.
+- ルートディレクトリ内にある`server`ディレクトリへ移動し、`pnpm build`を実行します。
+- `server`ディクレトリ内で`pnpm start`を実行します。　※スマホおよびディスプレイとのsocket通信処理を担う、サーバが起動します。
+- ルートディレクトリ内に戻ります。
+- ルートディクレトリ内で`pnpm dev`を実行します。　※スマホおよびディスプレイ側の画面を表示するサーバが起動します。
 
 ## Related Links
 
+- [Remix](https://remix.run/docs/en/main)
 - [Express adapter](https://remix.run/other-api/adapter#createrequesthandler)
 - [socket.io](https://socket.io/)
 - [socket.io-client](https://www.npmjs.com/package/socket.io-client)
+- [pandacss](https://panda-css.com/docs/installation/remix)
