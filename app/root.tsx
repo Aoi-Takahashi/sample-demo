@@ -1,4 +1,4 @@
-import { LinksFunction } from "@remix-run/node";
+import {LinksFunction} from '@remix-run/node';
 import {
   json,
   Links,
@@ -7,24 +7,24 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-} from "@remix-run/react";
-import { useEffect, useState } from "react";
-import type { Socket } from "socket.io-client";
-import { io } from "socket.io-client";
-import styles from "./index.css?url";
-import { SocketProvider } from "~/context";
+} from '@remix-run/react';
+import {useEffect, useState} from 'react';
+import type {Socket} from 'socket.io-client';
+import {io} from 'socket.io-client';
+import styles from './index.css?url';
+import {SocketProvider} from '~/context';
 
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
+export const links: LinksFunction = () => [{rel: 'stylesheet', href: styles}];
 
 export async function loader() {
   return json({
     ENV: {
-      PORT: process.env.PORT,
+      PORT: process.env.PORT ?? 3000,
     },
   });
 }
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
       <head>
@@ -57,7 +57,7 @@ export default function App() {
 
   useEffect(() => {
     if (!socket) return;
-    socket.on("confirmation", (data) => {
+    socket.on('confirmation', data => {
       console.log(data);
     });
   }, [socket]);
