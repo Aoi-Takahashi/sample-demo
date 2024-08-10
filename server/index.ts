@@ -34,6 +34,16 @@ io.on('connection', socket => {
     console.log(socket.id, data);
     io.emit('event To B', {increment: 1});
   });
+
+  socket.on('event-explosion', data => {
+    console.log(socket.id, data);
+    io.emit('event-explosion', {increment: 1});
+  });
+
+  socket.on('event-clear', data => {
+    console.log(socket.id, data);
+    io.emit('event-clear', {increment: 0});
+  });
 });
 
 app.get('/', async (_req: Request, res: Response) => {

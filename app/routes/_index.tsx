@@ -19,6 +19,12 @@ export default function Index() {
       <div className={buttonAlignStyle}>
         <Button onClick={() => navigate('/input')}>ユーザ操作画面</Button>
         <Button onClick={() => navigate('/output')}>コンテンツ表示画面</Button>
+        <Button onClick={() => navigate('/shima-city/input')}>
+          志摩市コンテンツユーザ操作画面
+        </Button>
+        <Button onClick={() => navigate('/shima-city/output')}>
+          志摩市コンテンツ画面
+        </Button>
       </div>
     </div>
   );
