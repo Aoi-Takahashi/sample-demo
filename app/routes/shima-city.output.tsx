@@ -1,6 +1,6 @@
 import Fireworks, {FireworksHandlers} from '@fireworks-js/react';
 import {useNavigate} from '@remix-run/react';
-import {Agowan_1} from 'image';
+import {Garbage, Umilabo_1} from 'image';
 import {useEffect, useRef, useState} from 'react';
 import {css} from 'styled-system/css';
 import {VStack} from 'styled-system/jsx';
@@ -13,6 +13,12 @@ export default function Output() {
   const navigate = useNavigate();
   const [percent, setPercent] = useState<number>(0);
   const ref = useRef<FireworksHandlers>(null);
+
+  const garbageImages = [
+    {bottom: 60, left: 20, opacityThreshold: 10},
+    {bottom: 60, left: 0, opacityThreshold: 20},
+    {bottom: 60, left: 10, opacityThreshold: 30},
+  ];
 
   useEffect(() => {
     const currentRef = ref.current;
@@ -43,45 +49,55 @@ export default function Output() {
   return (
     <div className={divStyle}>
       <h1 className={h1Style}>コンテンツ画面</h1>
-      <VStack className={css({alignItems: 'center', gap: 5})}>
-        <VStack
+      <VStack
+        className={css({
+          justifyContent: 'center',
+          gap: 5,
+          width: 'full',
+        })}>
+        <Progress value={percent} className={css({width: '500px'})} />
+        <img
+          src={Umilabo_1}
+          alt="image"
           className={css({
-            justifyContent: 'center',
-            gap: 5,
-            position: 'absolute',
-            width: 'full',
-          })}>
-          <p className={css({fontWeight: 600, fontSize: 'xl'})}>
-            祭り盛り上がりゲージ
-          </p>
-          <Progress value={percent} className={css({width: '500px'})} />
+            width: `100%`,
+            height: `500px`,
+            mx: 'auto',
+            position: 'relative',
+          })}
+        />
+        {garbageImages.map((image, index) => (
           <img
-            src={Agowan_1}
+            key={index}
+            src={Garbage}
             alt="image"
             className={css({
-              width: `100%`,
-              height: `500px`,
-              bgColor: 'transparent',
-              mx: 'auto',
-              transition: 'width 0.3s ease, height 0.3s ease',
+              opacity: percent < image.opacityThreshold ? 1 : 0,
+              transition: 'opacity 5s ease',
+              width: `100px`,
+              height: `100px`,
+              position: 'absolute',
+              top: 'auto',
+              bottom: image.bottom,
+              left: image.left,
             })}
           />
-          <Button w="full" onClick={() => navigate(-1)}>
-            Back To Home
-          </Button>
-        </VStack>
+        ))}
         <Fireworks
           ref={ref}
-          zoptions={{opacity: 0.5, rocketsPoint: {min: 10, max: 50}}}
+          zoptions={{opacity: 0.5, rocketsPoint: {min: 5, max: 15}}}
           autostart={false}
           style={{
-            top: 60,
+            top: 270,
             width: '100%',
             height: '500px',
-            position: 'relative',
+            position: 'absolute',
             background: 'transparent',
           }}
         />
+        <Button w="full" onClick={() => navigate(-1)}>
+          Back To Home
+        </Button>
       </VStack>
     </div>
   );

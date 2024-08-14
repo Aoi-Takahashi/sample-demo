@@ -30,9 +30,6 @@ export default function Input() {
       </div>
       <VStack className={css({alignItems: 'center', gap: 5})}>
         <VStack justifyContent="center" gap={5}>
-          <p className={css({fontWeight: 600, fontSize: 'xl'})}>
-            祭り盛り上がりゲージ
-          </p>
           <Progress value={percent} className={css({width: '500px'})} />
         </VStack>
       </VStack>
